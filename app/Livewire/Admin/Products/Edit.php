@@ -13,12 +13,12 @@ class Edit extends Component
     public Product $product;
     public string $name = '';
     public int $category_id = 0;
-    public string $description = '';
+    public ?string $description = null;
     public $thumbnail;
     public float $price_customer = 0;
     public float $price_reseller = 0;
-    public float $price_bulk = 0;
-    public int $min_bulk_qty = 1;
+    public ?float $price_bulk = null;
+    public ?int $min_bulk_qty = null;
     public string $status = 'active';
 
     public function mount(int $id): void

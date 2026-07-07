@@ -63,7 +63,7 @@
                                     setTimeout(() => copied = false, 2000);
                                 "
                                 x-text="copied ? 'Copied!' : 'Copy'"
-                                :class="copied ? 'text-emerald-600' : ''"
+                                x-bind:class="copied ? '!text-emerald-600' : ''"
                             >
                             </flux:button>
                         </div>
