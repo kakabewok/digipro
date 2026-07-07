@@ -1,4 +1,4 @@
-<div>
+<div x-on:confirm-modal:confirmed.window="if ($event.detail.action === 'deleteBackup') { $wire.deleteBackup(...$event.detail.params); }">
     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
             <flux:heading size="xl" level="1">Database Backups</flux:heading>
@@ -46,7 +46,7 @@
                                 <flux:table.cell>
                                     <div class="flex items-center gap-2 justify-end">
                                         <flux:button variant="ghost" size="sm" icon="arrow-down-tray" wire:click="downloadBackup('{{ $backup['path'] }}')" />
-                                        <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" wire:click="deleteBackup('{{ $backup['path'] }}')" wire:confirm="Are you sure you want to delete this backup file?" />
+                                        <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" @click="$dispatch('confirm-modal:show', { title: 'Hapus Backup', message: 'File backup ini akan dihapus permanen.', confirmLabel: 'Ya, Hapus', variant: 'danger', action: 'deleteBackup', params: ['{{ $backup['path'] }}'] })" />
                                     </div>
                                 </flux:table.cell>
                             </flux:table.row>

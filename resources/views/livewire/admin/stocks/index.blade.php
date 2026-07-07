@@ -1,4 +1,4 @@
-<div>
+<div x-on:confirm-modal:confirmed.window="if ($event.detail.action === 'deleteStock') { $wire.deleteStock(...$event.detail.params); }">
     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <flux:heading size="xl" level="1">Stock Management</flux:heading>
         
@@ -59,7 +59,7 @@
                             </flux:table.cell>
                             <flux:table.cell>
                                 @if($stock->status === 'available')
-                                    <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" wire:click="deleteStock({{ $stock->id }})" wire:confirm="Are you sure you want to delete this stock?" />
+                                    <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" @click="$dispatch('confirm-modal:show', { title: 'Hapus Stok', message: 'Item stok ini akan dihapus dan tidak bisa dikembalikan.', confirmLabel: 'Hapus Stok', variant: 'danger', action: 'deleteStock', params: [{{ $stock->id }}] })" />
                                 @endif
                             </flux:table.cell>
                         </flux:table.row>

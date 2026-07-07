@@ -1,4 +1,4 @@
-<div>
+<div x-on:confirm-modal:confirmed.window="if ($event.detail.action === 'deleteProduct') { $wire.deleteProduct(...$event.detail.params); }">
     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <flux:heading size="xl" level="1">Products</flux:heading>
         
@@ -65,7 +65,7 @@
                                         <flux:menu.item icon="pencil" :href="route('admin.products.edit', $product->id)" wire:navigate>Edit</flux:menu.item>
                                         <flux:menu.item icon="plus-circle" :href="route('admin.stocks.import', ['product_id' => $product->id])" wire:navigate>Add Stock</flux:menu.item>
                                         <flux:menu.separator />
-                                        <flux:menu.item icon="trash" wire:click="deleteProduct({{ $product->id }})" wire:confirm="Are you sure you want to delete this product?" class="text-red-600">Delete</flux:menu.item>
+                                        <flux:menu.item icon="trash" @click="$dispatch('confirm-modal:show', { title: 'Hapus Produk', message: 'Produk ini akan dihapus permanen beserta seluruh datanya.', confirmLabel: 'Ya, Hapus', variant: 'danger', action: 'deleteProduct', params: [{{ $product->id }}] })" class="text-red-600">Delete</flux:menu.item>
                                     </flux:menu>
                                 </flux:dropdown>
                             </flux:table.cell>

@@ -2,4 +2,5 @@
     <flux:main>
         {{ $slot }}
     </flux:main>
+    <x-confirm-modal />
 </x-layouts::app.sidebar>

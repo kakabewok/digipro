@@ -1,4 +1,4 @@
-<div>
+<div x-on:confirm-modal:confirmed.window="if ($event.detail.action === 'cancelOrder') { $wire.cancelOrder(...$event.detail.params); }">
     <div class="mb-4">
         <flux:breadcrumbs>
             <flux:breadcrumbs.item :href="route('admin.dashboard')" wire:navigate>Admin</flux:breadcrumbs.item>
@@ -12,7 +12,7 @@
         
         <div class="flex items-center gap-2">
             @if($order->status === 'pending')
-                <flux:button variant="danger" icon="x-mark" wire:click="cancelOrder" wire:confirm="Are you sure you want to cancel this order? This will release the locked stock back to available status.">
+                <flux:button variant="danger" icon="x-mark" @click="$dispatch('confirm-modal:show', { title: 'Batalkan Pesanan', message: 'Apakah Anda yakin ingin membatalkan pesanan ini? Stok akan dikembalikan.', confirmLabel: 'Ya, Batalkan', variant: 'danger', action: 'cancelOrder', params: [] })">
                     Cancel Order
                 </flux:button>
             @endif

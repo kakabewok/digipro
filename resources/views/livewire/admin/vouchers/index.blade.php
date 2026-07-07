@@ -1,4 +1,4 @@
-<div>
+<div x-on:confirm-modal:confirmed.window="if ($event.detail.action === 'deleteVoucher') { $wire.deleteVoucher(...$event.detail.params); }">
     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <flux:heading size="xl" level="1">Vouchers</flux:heading>
         
@@ -57,7 +57,7 @@
                                         <div class="flex items-center gap-2 justify-end">
                                             <flux:button variant="ghost" size="sm" icon="pencil" wire:click="edit({{ $voucher->id }})" />
                                             @if($voucher->used_count === 0)
-                                                <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" wire:click="deleteVoucher({{ $voucher->id }})" wire:confirm="Are you sure?" />
+                                                <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" @click="$dispatch('confirm-modal:show', { title: 'Hapus Voucher', message: 'Voucher ini akan dihapus permanen.', confirmLabel: 'Ya, Hapus', variant: 'danger', action: 'deleteVoucher', params: [{{ $voucher->id }}] })" />
                                             @endif
                                         </div>
                                     </flux:table.cell>
