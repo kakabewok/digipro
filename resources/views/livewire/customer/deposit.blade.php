@@ -35,7 +35,7 @@
                         <flux:text class="text-xs text-zinc-500">Minimum: Rp 10.000, Maximum: Rp 10.000.000</flux:text>
                     </div>
 
-                    <flux:button type="submit" variant="primary" class="w-full" size="lg" wire:loading.attr="disabled">
+                    <flux:button type="submit" variant="primary" class="w-full" wire:loading.attr="disabled">
                         Proceed to Payment (QRIS)
                     </flux:button>
                 </form>

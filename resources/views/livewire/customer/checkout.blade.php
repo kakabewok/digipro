@@ -116,7 +116,7 @@
                             Insufficient Balance
                         </flux:button>
                     @else
-                        <flux:button wire:click="processCheckout" variant="primary" size="lg" class="w-full" wire:loading.attr="disabled">
+                        <flux:button wire:click="processCheckout" variant="primary" class="w-full" wire:loading.attr="disabled">
                             Pay Rp {{ number_format($total, 0, ',', '.') }}
                         </flux:button>
                     @endif

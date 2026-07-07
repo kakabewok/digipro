@@ -58,7 +58,7 @@
         
         <div class="flex flex-col gap-3">
             @if($checkoutUrl)
-                <flux:button variant="primary" size="lg" href="{{ $checkoutUrl }}" target="_blank" class="w-full">
+                <flux:button variant="primary" href="{{ $checkoutUrl }}" target="_blank" class="w-full">
                     Pay via AutoGoPay
                 </flux:button>
             @endif

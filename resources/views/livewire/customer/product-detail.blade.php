@@ -65,7 +65,6 @@
                 @if($product->available_stock_count > 0)
                     <flux:button 
                         variant="primary" 
-                        size="xl" 
                         class="w-full" 
                         icon="shopping-cart"
                         :href="route('checkout', $product->slug)"
@@ -74,7 +73,7 @@
                         Buy Now
                     </flux:button>
                 @else
-                    <flux:button variant="filled" size="xl" class="w-full" disabled>
+                    <flux:button variant="filled" class="w-full" disabled>
                         Out of Stock
                     </flux:button>
                 @endif
