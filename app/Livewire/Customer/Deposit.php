@@ -28,7 +28,11 @@ class Deposit extends Component
             $this->qrisExpiry = $result['deposit']->qris_expired_at?->toIso8601String();
             $this->depositId = $result['deposit']->id;
         } else {
-            session()->flash('error', $result['error']);
+            \Flux::toast(
+                text: (string) $result['error'],
+                heading: 'Deposit Failed',
+                variant: 'danger',
+            );
         }
     }
 

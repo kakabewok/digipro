@@ -23,6 +23,11 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
+    --color-primary: #5865A1;
+    --color-primary-hover: #4a5790;
+    --color-primary-light: #eef0f8;
+    --color-primary-dark: #3d4a80;
+
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);

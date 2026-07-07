@@ -3,7 +3,7 @@
 use App\Http\Controllers\PaymentWebhookController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('home');
+Route::get('/', App\Livewire\Landing\HomePage::class)->name('home');
 
 // Payment webhook (no auth, CSRF excluded in bootstrap/app.php)
 Route::post('webhook/payment', [PaymentWebhookController::class, 'handle'])

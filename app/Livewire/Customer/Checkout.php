@@ -77,7 +77,11 @@ class Checkout extends Component
                 session()->flash('success', 'Order placed successfully!');
                 $this->redirect(route('orders.show', $result['order']->invoice_number), navigate: true);
             } else {
-                session()->flash('error', $result['error']);
+                \Flux::toast(
+                    text: (string) $result['error'],
+                    heading: 'Checkout Failed',
+                    variant: 'danger',
+                );
             }
         } else {
             $result = $orderService->createWithQris($user, $this->product, 1, $voucher);
@@ -89,7 +93,11 @@ class Checkout extends Component
                 $this->qrisExpiry = $result['order']->qris_expired_at?->toIso8601String();
                 $this->orderId = $result['order']->id;
             } else {
-                session()->flash('error', $result['error']);
+                \Flux::toast(
+                    text: (string) $result['error'],
+                    heading: 'Checkout Failed',
+                    variant: 'danger',
+                );
             }
         }
     }
