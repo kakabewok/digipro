@@ -6,29 +6,29 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <flux:heading size="xl" level="1">Products</flux:heading>
             
-            <div class="flex items-center gap-3">
-                <flux:input wire:model.live.debounce.300ms="search" placeholder="Search..." icon="magnifying-glass" clearable class="w-64" />
-                <flux:button variant="primary" icon="plus" :href="route('admin.products.create')" wire:navigate>Add Product</flux:button>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
+                <flux:input wire:model.live.debounce.300ms="search" placeholder="Search..." icon="magnifying-glass" clearable class="w-full sm:w-64" />
+                <flux:button variant="primary" icon="plus" :href="route('admin.products.create')" class="w-full sm:w-auto" wire:navigate>Add Product</flux:button>
             </div>
         </div>
 
-        <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg">
-                    <button wire:click="$set('filterStatus', null)" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStatus === null ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Semua Status</button>
-                    <button wire:click="$set('filterStatus', 'active')" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStatus === 'active' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Aktif</button>
-                    <button wire:click="$set('filterStatus', 'inactive')" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStatus === 'inactive' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Nonaktif</button>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+            <div class="flex flex-wrap items-center gap-3 w-full">
+                <div class="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg overflow-x-auto max-w-full">
+                    <button wire:click="$set('filterStatus', null)" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStatus === null ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Semua Status</button>
+                    <button wire:click="$set('filterStatus', 'active')" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStatus === 'active' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Aktif</button>
+                    <button wire:click="$set('filterStatus', 'inactive')" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStatus === 'inactive' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Nonaktif</button>
                 </div>
 
-                <div class="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg">
-                    <button wire:click="$set('filterStock', null)" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStock === null ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Semua Stok</button>
-                    <button wire:click="$set('filterStock', 'available')" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStock === 'available' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Tersedia</button>
-                    <button wire:click="$set('filterStock', 'empty')" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStock === 'empty' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Habis</button>
-                    <button wire:click="$set('filterStock', 'low')" class="px-3 py-1 rounded-md text-sm transition-colors {{ $filterStock === 'low' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Kritis</button>
+                <div class="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg overflow-x-auto max-w-full">
+                    <button wire:click="$set('filterStock', null)" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStock === null ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Semua Stok</button>
+                    <button wire:click="$set('filterStock', 'available')" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStock === 'available' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Tersedia</button>
+                    <button wire:click="$set('filterStock', 'empty')" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStock === 'empty' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Habis</button>
+                    <button wire:click="$set('filterStock', 'low')" class="px-3 py-1 rounded-md text-sm transition-colors whitespace-nowrap {{ $filterStock === 'low' ? 'bg-[#5865A1] text-white font-medium shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200' }}">Stok Kritis</button>
                 </div>
                 
                 @if($search !== '' || $filterStatus !== null || $filterStock !== null)
-                    <button wire:click="resetFilters" class="text-sm text-gray-400 hover:text-gray-600 underline ml-2">Reset Filter</button>
+                    <button wire:click="resetFilters" class="text-sm text-gray-400 hover:text-gray-600 underline whitespace-nowrap">Reset Filter</button>
                 @endif
             </div>
         </div>
@@ -66,11 +66,11 @@
                             </flux:table.cell>
                             <flux:table.cell>
                                 <div class="text-sm">
-                                    <div class="font-medium text-zinc-900 dark:text-zinc-100">{{ number_format($product->price_customer, 0, ',', '.') }}</div>
-                                    <div class="text-xs text-zinc-500 flex gap-2 mt-0.5">
-                                        <span class="text-blue-600 dark:text-blue-400">R: {{ number_format($product->price_reseller, 0, ',', '.') }}</span>
+                                    <div class="font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Rp {{ number_format($product->price_customer, 0, ',', '.') }}</div>
+                                    <div class="text-xs text-zinc-500 flex flex-col gap-0.5 mt-1">
+                                        <span class="whitespace-nowrap text-blue-600 dark:text-blue-400">R: {{ number_format($product->price_reseller, 0, ',', '.') }}</span>
                                         @if($product->price_bulk > 0)
-                                            <span class="text-emerald-600 dark:text-emerald-400">B: {{ number_format($product->price_bulk, 0, ',', '.') }} (≥{{ $product->min_bulk_qty }})</span>
+                                            <span class="whitespace-nowrap text-emerald-600 dark:text-emerald-400">B: {{ number_format($product->price_bulk, 0, ',', '.') }} <span class="text-emerald-600/70 dark:text-emerald-400/70">(≥{{ $product->min_bulk_qty }})</span></span>
                                         @endif
                                     </div>
                                 </div>

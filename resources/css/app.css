@@ -61,7 +61,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -73,3 +73,37 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+/* Table UI Global Overrides */
+ui-table-scroll-area {
+    @apply block w-full rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-800 overflow-x-auto shadow-sm bg-white dark:bg-zinc-900;
+}
+
+table[data-flux-table] {
+    @apply w-full min-w-[800px] xl:min-w-full border-collapse;
+}
+
+table[data-flux-table] thead {
+    @apply bg-zinc-50 dark:bg-zinc-800;
+}
+
+table[data-flux-table] th[data-flux-column] {
+    @apply py-3 bg-zinc-50 dark:bg-zinc-800/80 text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-700;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+table[data-flux-table] td[data-flux-cell] {
+    @apply py-4 border-b border-zinc-100 dark:border-zinc-800/50 align-middle transition-colors;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    white-space: normal !important;
+    word-break: break-word;
+}
+
+table[data-flux-table] tbody tr:hover td[data-flux-cell] {
+    @apply bg-zinc-50/80 dark:bg-zinc-800/40;
+}
+
+table[data-flux-table] tbody tr:last-child td[data-flux-cell] {
+    @apply border-b-0;
+}
