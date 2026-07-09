@@ -7,6 +7,9 @@ use Laravel\Fortify\Features;
 
 abstract class TestCase extends BaseTestCase
 {
+    use \Illuminate\Foundation\Testing\RefreshDatabase;
+    use \Tests\Traits\InteractsWithRoles;
+
     protected function skipUnlessFortifyHas(string $feature, ?string $message = null): void
     {
         if (! Features::enabled($feature)) {

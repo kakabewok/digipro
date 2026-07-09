@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @property int $id
  * @property int $user_id
@@ -17,6 +19,8 @@ use Illuminate\Support\Carbon;
  */
 class Deposit extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id', 'amount', 'payment_status',
         'qris_reference', 'qris_checkout_url', 'qris_expired_at',

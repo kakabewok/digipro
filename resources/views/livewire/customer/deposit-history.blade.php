@@ -43,17 +43,15 @@
                                     </div>
                                 </flux:table.cell>
                                 <flux:table.cell>
-                                    @if($deposit->payment_status === 'paid')
-                                        <flux:badge color="success" size="sm">Success</flux:badge>
-                                    @elseif($deposit->payment_status === 'pending')
+                                    @if($deposit->payment_status === 'pending')
                                         <div class="flex items-center gap-2">
-                                            <flux:badge color="warning" size="sm">Pending</flux:badge>
+                                            <x-status-badge :status="$deposit->payment_status" />
                                             <flux:button size="xs" variant="ghost" :href="$deposit->qris_checkout_url" target="_blank">
                                                 Pay
                                             </flux:button>
                                         </div>
                                     @else
-                                        <flux:badge color="danger" size="sm">Expired</flux:badge>
+                                        <x-status-badge :status="$deposit->payment_status" />
                                     @endif
                                 </flux:table.cell>
                             </flux:table.row>

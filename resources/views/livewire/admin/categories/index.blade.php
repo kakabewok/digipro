@@ -7,6 +7,20 @@
         </div>
     </div>
 
+    <div class="mb-4">
+        @if(session()->has('success'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)" class="bg-green-50 border border-green-200 text-green-700 dark:bg-green-500/10 dark:border-green-500/20 dark:text-green-400 text-sm px-4 py-3 rounded-md mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @error('delete')
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)" class="bg-red-50 border border-red-200 text-red-600 dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400 text-sm px-4 py-3 rounded-md mb-4">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <!-- List Categories -->
         <div class="lg:col-span-2">
@@ -26,13 +40,37 @@
                                     <flux:table.cell class="font-medium">{{ $category->name }}</flux:table.cell>
                                     <flux:table.cell class="text-zinc-500 font-mono text-xs">{{ $category->slug }}</flux:table.cell>
                                     <flux:table.cell>
-                                        <flux:badge size="sm">{{ $category->products_count }}</flux:badge>
+                                        @if($category->products_count === 0)
+                                            <span class="text-xs text-gray-400 dark:text-gray-500">0 produk</span>
+                                        @else
+                                            <span class="text-xs text-gray-400 dark:text-gray-500">{{ $category->products_count }} produk</span>
+                                        @endif
                                     </flux:table.cell>
                                     <flux:table.cell>
                                         <div class="flex items-center gap-2 justify-end">
                                             <flux:button variant="ghost" size="sm" icon="pencil" wire:click="edit({{ $category->id }})" />
                                             @if($category->products_count === 0)
-                                                <flux:button variant="ghost" size="sm" icon="trash" class="text-red-500 hover:text-red-700" @click="$dispatch('confirm-modal:show', { title: 'Hapus Kategori', message: 'Kategori ini akan dihapus permanen.', confirmLabel: 'Ya, Hapus', variant: 'danger', action: 'deleteCategory', params: [{{ $category->id }}] })" />
+                                                <button
+                                                  @click="$dispatch('confirm-modal:show', {
+                                                    title: 'Hapus Kategori',
+                                                    message: 'Kategori ini akan dihapus permanen. Pastikan tidak ada produk yang menggunakan kategori ini.',
+                                                    confirmLabel: 'Ya, Hapus',
+                                                    variant: 'danger',
+                                                    action: 'deleteCategory',
+                                                    params: [{{ $category->id }}]
+                                                  })"
+                                                  class="text-sm text-red-500 hover:text-red-600 font-medium transition-colors duration-150"
+                                                >
+                                                  Hapus
+                                                </button>
+                                            @else
+                                                <button
+                                                  disabled
+                                                  title="Tidak dapat dihapus — masih ada produk di kategori ini"
+                                                  class="text-sm text-gray-300 dark:text-gray-700 cursor-not-allowed line-through"
+                                                >
+                                                  Hapus
+                                                </button>
                                             @endif
                                         </div>
                                     </flux:table.cell>

@@ -185,7 +185,7 @@
                                     {{-- Thumbnail --}}
                                     <div class="relative aspect-video bg-gray-100 dark:bg-gray-800">
                                         @if($product->thumbnail)
-                                            <img src="{{ $product->thumbnail }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
+                                            <img src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
                                         @else
                                             <div class="flex h-full w-full items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-gray-400 dark:text-gray-500">

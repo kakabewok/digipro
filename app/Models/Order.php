@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @property int $id
  * @property int $user_id
@@ -27,6 +29,8 @@ use Illuminate\Support\Carbon;
  */
 class Order extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id', 'product_id', 'stock_id', 'voucher_id',
         'quantity', 'price', 'discount', 'total',

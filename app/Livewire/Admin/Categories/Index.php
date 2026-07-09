@@ -43,14 +43,24 @@ class Index extends Component
 
     public function deleteCategory(int $id): void
     {
+        // Use existing method name from the UI, but implement the new logic
+        $this->authorize('manage categories');
+
         $category = Category::findOrFail($id);
-        if ($category->products()->count() > 0) {
-            session()->flash('error', 'Cannot delete category with products.');
+
+        // Block delete if category has products
+        if ($category->products()->exists()) {
+            $this->addError('delete',
+                'Kategori tidak dapat dihapus karena masih memiliki produk.');
             return;
         }
-        app(AuditLogService::class)->logDeleted($category);
+
         $category->delete();
-        session()->flash('success', 'Category deleted.');
+
+        // Log to audit log
+        app(AuditLogService::class)->logDeleted($category);
+
+        session()->flash('success', 'Kategori berhasil dihapus.');
     }
 
     public function render()
@@ -58,7 +68,7 @@ class Index extends Component
         return view('livewire.admin.categories.index', [
             'categories' => Category::withCount('products')
                 ->when($this->search, fn ($q) => $q->where('name', 'like', "%{$this->search}%"))
-                ->latest()->paginate(15),
+                ->orderBy('name')->paginate(15),
         ])->layout('layouts.admin', ['title' => 'Categories']);
     }
 }

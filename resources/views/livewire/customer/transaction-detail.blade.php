@@ -10,15 +10,7 @@
     <div class="mb-6 flex items-center justify-between">
         <flux:heading size="xl" level="1">Order Details</flux:heading>
         
-        @if($order->status === 'completed')
-            <flux:badge color="success" size="lg">Completed</flux:badge>
-        @elseif($order->status === 'pending')
-            <flux:badge color="warning" size="lg">Pending Payment</flux:badge>
-        @elseif($order->status === 'processing')
-            <flux:badge color="blue" size="lg">Processing</flux:badge>
-        @else
-            <flux:badge color="danger" size="lg">Cancelled</flux:badge>
-        @endif
+        <x-status-badge :status="$order->status" />
     </div>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -131,13 +123,7 @@
                     <div class="flex justify-between text-sm">
                         <span class="text-zinc-500">Payment Status</span>
                         <span>
-                            @if($order->payment_status === 'paid')
-                                <span class="text-emerald-600 font-medium">Paid</span>
-                            @elseif($order->payment_status === 'pending')
-                                <span class="text-warning-600 font-medium">Pending</span>
-                            @else
-                                <span class="text-red-600 font-medium capitalize">{{ $order->payment_status }}</span>
-                            @endif
+                            <x-status-badge :status="$order->payment_status" />
                         </span>
                     </div>
                     <div class="flex justify-between text-sm">

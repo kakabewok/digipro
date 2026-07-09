@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
@@ -23,6 +24,8 @@ use Illuminate\Support\Str;
  */
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'category_id', 'name', 'slug', 'description', 'thumbnail',
         'price_customer', 'price_reseller', 'price_bulk', 'min_bulk_qty', 'status',

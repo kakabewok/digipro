@@ -42,13 +42,7 @@
                                 <div class="font-mono text-xs text-zinc-500">{{ $deposit->qris_reference ?? '-' }}</div>
                             </flux:table.cell>
                             <flux:table.cell>
-                                @if($deposit->payment_status === 'paid')
-                                    <flux:badge color="success" size="sm">Paid</flux:badge>
-                                @elseif($deposit->payment_status === 'pending')
-                                    <flux:badge color="warning" size="sm">Pending</flux:badge>
-                                @else
-                                    <flux:badge color="danger" size="sm">Expired</flux:badge>
-                                @endif
+                                <x-status-badge :status="$deposit->payment_status" />
                             </flux:table.cell>
                         </flux:table.row>
                     @empty

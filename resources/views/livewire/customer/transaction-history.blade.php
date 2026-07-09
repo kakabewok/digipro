@@ -58,15 +58,7 @@
                                     Rp {{ number_format($order->total, 0, ',', '.') }}
                                 </flux:table.cell>
                                 <flux:table.cell>
-                                    @if($order->status === 'completed')
-                                        <flux:badge color="success" size="sm">Completed</flux:badge>
-                                    @elseif($order->status === 'pending')
-                                        <flux:badge color="warning" size="sm">Pending</flux:badge>
-                                    @elseif($order->status === 'processing')
-                                        <flux:badge color="blue" size="sm">Processing</flux:badge>
-                                    @else
-                                        <flux:badge color="danger" size="sm">Cancelled</flux:badge>
-                                    @endif
+                                    <x-status-badge :status="$order->status" />
                                 </flux:table.cell>
                                 <flux:table.cell>
                                     <flux:button variant="ghost" size="sm" :href="route('orders.show', $order->invoice_number)" wire:navigate>

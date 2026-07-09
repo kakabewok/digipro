@@ -3,6 +3,9 @@ namespace App\Livewire\Admin\Orders;
 use App\Models\Order;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class Index extends Component
 {
@@ -15,6 +18,24 @@ class Index extends Component
     public function updatingSearch(): void { $this->resetPage(); }
     public function updatingStatusFilter(): void { $this->resetPage(); }
     public function updatingPaymentMethodFilter(): void { $this->resetPage(); }
+
+    public function exportExcel(): BinaryFileResponse
+    {
+        $this->authorize('manage orders');
+
+        $filename = 'orders-' . now()->format('Ymd-His') . '.xlsx';
+
+        return Excel::download(
+            new OrdersExport(
+                status:        $this->statusFilter ?: null,
+                paymentMethod: $this->paymentMethodFilter ?: null,
+                dateFrom:      null,
+                dateTo:        null,
+                search:        $this->search ?: null,
+            ),
+            $filename
+        );
+    }
 
     public function render()
     {
